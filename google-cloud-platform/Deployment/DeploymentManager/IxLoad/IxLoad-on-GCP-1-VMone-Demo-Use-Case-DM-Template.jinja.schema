@@ -8,7 +8,7 @@ imports:
 properties:
   GCP_PROJECT_NAME:
     type: string
-    default: open-ixia
+    default: ixload-ve-gcp
     
   GCP_REGION_NAME:
     type: string
@@ -203,7 +203,7 @@ properties:
 
   GCP_CLIENT_CUSTOM_IMAGE_PROJECT_NAME:
     type: string
-    default: ixload-ve-gcp
+    default: kt-nas-ixload-dev
 
   GCP_CLIENT_CUSTOM_IMAGE_FAMILY_NAME:
     type: string
@@ -236,7 +236,7 @@ properties:
 
   GCP_VMONE_CUSTOM_IMAGE_PROJECT_NAME:
     type: string
-    default: ixload-
+    default: ixvm-261016
 
   GCP_VMONE_CUSTOM_IMAGE_FAMILY_NAME:
     type: string
