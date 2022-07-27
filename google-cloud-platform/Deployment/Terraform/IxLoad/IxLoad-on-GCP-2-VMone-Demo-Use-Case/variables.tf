@@ -30,7 +30,7 @@ variable "GCP_LOGIN_ID_TAG" {
 
 variable "GCP_PROJECT_TAG" {
 	type = string
-	default = "ixload-ve-gcp-gcp-ixload"
+	default = "open-ixia-gcp-ixload"
 }
 
 variable "GCP_MGMT_FIREWALL_RULE_SOURCE_IP_RANGES" {
