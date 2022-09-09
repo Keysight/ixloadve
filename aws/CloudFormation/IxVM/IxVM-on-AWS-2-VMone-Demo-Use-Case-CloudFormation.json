@@ -28,7 +28,7 @@
 				"REGIONxTAG" : "US_WEST_2"
 			},
 			"ap-south-1" : {
-				"AMIxVMONE" : " ami-047fedc3d72940f86",
+				"AMIxVMONE" : "ami-047fedc3d72940f86",
 				"EC2xCONNECTxCIDR" : "13.233.177.0/29",
 				"EC2xREGION" : "Asia Pacific (Mumbai)",
 				"REGIONxTAG" : "AP_SOUTH_1"
