@@ -32,7 +32,7 @@ variable "IxClientInstanceType" {
 	default = "m4.xlarge"
 	description = "Instance type of Ixia Client VM"
 	validation {
-		condition = can(regex("m4.xlarge", var.IxClientInstanceType)) || can(regex("m4.large", var.IxClientInstanceType)) || can(regex("t2.xlarge", var.IxClientInstanceType))
+		condition = can(regex("m5.xlarge", var.IxClientInstanceType)) || can(regex("c5.xlarge", var.IxClientInstanceType)) || can(regex("c5n.xlarge", var.IxClientInstanceType))
 		error_message = "IxClientInstanceType must be one of (m4.xlarge | m4.large | t2.xlarge) types."
 	}
 }
