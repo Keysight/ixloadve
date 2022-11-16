@@ -7,7 +7,7 @@
 			"type": "String"
 		},
 		"DiagnosticsStorageAccountName": {
-			"defaultValue": "Ixia_VE_Diagnostics",
+			"defaultValue": "ixvm920",
 			"type": "String"
 		},	
 		"VnetName": {
@@ -35,7 +35,7 @@
 			"type": "Array"
 		},
         "VirtualTestApplianceImageName": {
-			"defaultValue": "Ixia_Virtual_Test_Appliance_9.20.vhd",
+			"defaultValue": "Ixia_Virtual_Test_Appliance_9.20",
 			"type": "String"
 		},
 		"VirtualTestApplianceVmSize": {
@@ -48,7 +48,7 @@
 			]
 		},
 		"OptionalVMPrefix": {
-			"defaultValue": "Ixia_VE",
+			"defaultValue": "VE",
 			"type": "String"
 		},
 		"UserEmailTag": {
@@ -57,6 +57,10 @@
 		},
 		"UserProjectTag": {
 			"defaultValue": "Optional-Project-Tag",
+			"type": "String"
+		},
+		"SshKey": {
+			"defaultValue": "ssh-rsa",
 			"type": "String"
 		}
 	},
@@ -67,7 +71,6 @@
 		"UserEmailTag": "[parameters('UserEmailTag')]",
 		"UserProjectTag": "[parameters('UserProjectTag')]",
 		"ImageResourceGroupName": "[parameters('ImageResourceGroupName')]",
-		"PageBlobsStorageAccountName": "[parameters('PageBlobsStorageAccountName')]",
 		"DiagnosticsStorageAccountName": "[parameters('DiagnosticsStorageAccountName')]",
         "VnetName": "[parameters('VnetName')]",
         "ManagementSubnetName": "[parameters('ManagementSubnetName')]",
@@ -87,7 +90,7 @@
 		"VirtualTestAppliance1Eth1IpAddresses": "[parameters('VirtualTestAppliance1Eth1IpAddresses')]",
         "VirtualTestAppliance1Name": "[concat(variables('OptionalVMPrefix'), '-', 'IXIA-AZURE-IXLOAD-VIRTUALTESTAPPLIANCE1')]",
 		"VirtualTestAppliance1DnsLabel": "[concat(toLower(variables('OptionalVMPrefix')), '-', toLower(replace(resourceGroup().name, '_', '-')), '-', 'ixia-ixload-virtualtestappliance-1', '-', substring(uniqueString(resourceGroup().id),0,6))]",
-        "VirtualTestApplianceEnableAcceleratedNetworking": true,
+        "VirtualTestApplianceEnableAcceleratedNetworking": false,
         "VirtualTestApplianceEnableIPForwarding": true,
 		"VirtualTestApplianceDisablePasswordAuthentication": true,
 		"VirtualTestApplianceProvisionVMAgent": false,
@@ -100,7 +103,7 @@
 		"VirtualTestApplianceImageId": "[concat('/subscriptions/', variables('SubscriptionId'), '/resourceGroups/', variables('ImageResourceGroupName'), '/providers/Microsoft.Compute/images/', variables('VirtualTestApplianceImageName'))]",		
 		"VirtualTestApplianceCreateOption": "FromImage",		
 		"AdminUserName": "Ixia-Admin",
-		"SshPublicKeyData": "ssh-rsa",
+		"SshPublicKeyData": "[parameters('SshKey')]",
 		"SshKeyPath": "[concat('/home/',variables('AdminUserName'),'/.ssh/authorized_keys')]"
 	},
     "resources": [

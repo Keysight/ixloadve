@@ -7,7 +7,7 @@
 			"type": "String"
 		},
 		"DiagnosticsStorageAccountName": {
-			"defaultValue": "Ixia_VE_Diagnostics",
+			"defaultValue": "ixvm920",
 			"type": "String"
 		},	
 		"VnetAddressPrefix": {
@@ -47,7 +47,7 @@
 			"type": "Array"
 		},
         "VirtualTestApplianceImageName": {
-			"defaultValue": "Ixia_Virtual_Test_Appliance_9.20.vhd",
+			"defaultValue": "Ixia_Virtual_Test_Appliance_9.20",
 			"type": "String"
 		},
 		"VirtualTestApplianceVmSize": {
@@ -60,7 +60,7 @@
 			]
 		},
 		"OptionalVMPrefix": {
-			"defaultValue": "Ixia_VE",
+			"defaultValue": "VE",
 			"type": "String"
 		},
 		"UserEmailTag": {
@@ -69,6 +69,10 @@
 		},
 		"UserProjectTag": {
 			"defaultValue": "Optional-Project-Tag",
+			"type": "String"
+		},
+		"SshKey": {
+			"defaultValue": "ssh-rsa",
 			"type": "String"
 		}
 	},
@@ -79,7 +83,6 @@
 		"UserEmailTag": "[parameters('UserEmailTag')]",
 		"UserProjectTag": "[parameters('UserProjectTag')]",
 		"ImageResourceGroupName": "[parameters('ImageResourceGroupName')]",
-		"PageBlobsStorageAccountName": "[parameters('PageBlobsStorageAccountName')]",
 		"DiagnosticsStorageAccountName": "[parameters('DiagnosticsStorageAccountName')]",
         "VnetName": "[concat(variables('OptionalVMPrefix'), '_', 'IXIA_AZURE_VNET')]",
         "VnetAddressPrefix": "[parameters('VnetAddressPrefix')]",
@@ -123,7 +126,7 @@
 		"VirtualTestApplianceImageId": "[concat('/subscriptions/', variables('SubscriptionId'), '/resourceGroups/', variables('ImageResourceGroupName'), '/providers/Microsoft.Compute/images/', variables('VirtualTestApplianceImageName'))]",		
 		"VirtualTestApplianceCreateOption": "FromImage",		
 		"AdminUserName": "Ixia-Admin",
-		"SshPublicKeyData": "ssh-rsa",
+		"SshPublicKeyData": "[parameters('SshKey')]",
 		"SshKeyPath": "[concat('/home/',variables('AdminUserName'),'/.ssh/authorized_keys')]"
 	},
     "resources": [
@@ -596,8 +599,8 @@
                     "dnsServers": [],
                     "appliedDnsServers": []
                 },
-                "enableAcceleratedNetworking": "[variables('VirtualTestAppliance2EnableAcceleratedNetworking')]",
-                "enableIPForwarding": "[variables('VirtualTestAppliance2EnableIPForwarding')]",
+                "enableAcceleratedNetworking": "[variables('VirtualTestApplianceEnableAcceleratedNetworking')]",
+                "enableIPForwarding": "[variables('VirtualTestApplianceEnableIPForwarding')]",
                 "networkSecurityGroup": {
                     "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('MgmtNetworkSecurityGroupName'))]"
                 },
@@ -749,8 +752,8 @@
                     "dnsServers": [],
                     "appliedDnsServers": []
                 },
-                "enableAcceleratedNetworking": "[variables('VirtualTestAppliance2EnableAcceleratedNetworking')]",
-                "enableIPForwarding": "[variables('VirtualTestAppliance2EnableIPForwarding')]",
+                "enableAcceleratedNetworking": "[variables('VirtualTestApplianceEnableAcceleratedNetworking')]",
+                "enableIPForwarding": "[variables('VirtualTestApplianceEnableIPForwarding')]",
                 "networkSecurityGroup": {
                     "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('Test2NetworkSecurityGroupName'))]"
                 },
@@ -917,8 +920,8 @@
 					"computerName": "[variables('VirtualTestAppliance2Name')]",
 					"adminUsername": "[variables('AdminUserName')]",
 					"linuxConfiguration": {
-						"disablePasswordAuthentication": "[variables('VirtualTestAppliance2DisablePasswordAuthentication')]",
-						"provisionVMAgent": "[variables('VirtualTestAppliance2ProvisionVMAgent')]",
+						"disablePasswordAuthentication": "[variables('VirtualTestApplianceDisablePasswordAuthentication')]",
+						"provisionVMAgent": "[variables('VirtualTestApplianceProvisionVMAgent')]",
 						"ssh": {
 						  "publicKeys": [
 							{
@@ -947,7 +950,7 @@
                 },
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
-                        "enabled": "[variables('VirtualTestAppliance2BootDiagnosticsEnabled')]",
+                        "enabled": "[variables('VirtualTestApplianceBootDiagnosticsEnabled')]",
                         "storageUri": "[concat('https', '://', variables('DiagnosticsStorageAccountName'), '.blob.core.windows.net', '/')]"
                     }
                 }

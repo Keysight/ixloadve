@@ -7,7 +7,7 @@
 			"type": "String"
 		},
 		"DiagnosticsStorageAccountName": {
-			"defaultValue": "Ixia_VE_Diagnostics",
+			"defaultValue": "ixvm920",
 			"type": "String"
 		},
 		"ManagementSecurityRuleSourceIPPrefix": {
@@ -15,7 +15,7 @@
 			"type": "String"
 		},
         "VirtualTestApplianceImageName": {
-			"defaultValue": "Ixia_Virtual_Test_Appliance_9.20.vhd",
+			"defaultValue": "Ixia_Virtual_Test_Appliance_9.20",
 			"type": "String"
 		},
 		"VirtualTestApplianceVmSize": {
@@ -28,7 +28,7 @@
 			]
 		},
 		"OptionalVMPrefix": {
-			"defaultValue": "Ixia_VE",
+			"defaultValue": "VE",
 			"type": "String"
 		},
 		"UserEmailTag": {
@@ -37,6 +37,10 @@
 		},
 		"UserProjectTag": {
 			"defaultValue": "Optional-Project-Tag",
+			"type": "String"
+		},
+		"SshKey": {
+			"defaultValue": "ssh-rsa",
 			"type": "String"
 		}
 	},
@@ -47,7 +51,6 @@
 		"UserEmailTag": "[parameters('UserEmailTag')]",
 		"UserProjectTag": "[parameters('UserProjectTag')]",
 		"ImageResourceGroupName": "[parameters('ImageResourceGroupName')]",
-		"PageBlobsStorageAccountName": "[parameters('PageBlobsStorageAccountName')]",
 		"DiagnosticsStorageAccountName": "[parameters('DiagnosticsStorageAccountName')]",
         "VnetName": "[concat(variables('OptionalVMPrefix'), '_', 'IXIA_AZURE_VNET')]",
         "VnetAddressPrefix": "10.0.0.0/16",
@@ -91,7 +94,7 @@
 		"VirtualTestApplianceImageId": "[concat('/subscriptions/', variables('SubscriptionId'), '/resourceGroups/', variables('ImageResourceGroupName'), '/providers/Microsoft.Compute/images/', variables('VirtualTestApplianceImageName'))]",		
 		"VirtualTestApplianceCreateOption": "FromImage",		
 		"AdminUserName": "Ixia-Admin",
-		"SshPublicKeyData": "ssh-rsa",
+		"SshPublicKeyData": "[parameters('SshKey')]",
 		"SshKeyPath": "[concat('/home/',variables('AdminUserName'),'/.ssh/authorized_keys')]"
 	},
     "resources": [

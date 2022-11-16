@@ -7,23 +7,23 @@
 			"type": "String"
 		},
 		"DiagnosticsStorageAccountName": {
-			"defaultValue": "Ixia_VE_Diagnostics",
+			"defaultValue": "ixvm920",
 			"type": "String"
 		},	
 		"VnetName": {
-			"defaultValue": "VNET_Name",
+			"defaultValue": "vm-vnet",
 			"type": "String"
 		},
         "ManagementSubnetName": {
-			"defaultValue": "Ixia_VE_Management_Subnet",
+			"defaultValue": "management-subnet",
 			"type": "String"
 		},
 		"Test1SubnetName": {
-			"defaultValue": "Ixia_VE_Test1_Subnet",
+			"defaultValue": "test-subnet1",
 			"type": "String"
 		},
         "Test2SubnetName": {
-			"defaultValue": "Ixia_VE_Test2_Subnet",
+			"defaultValue": "test-subnet2",
 			"type": "String"
 		},
 		"ManagementSecurityRuleSourceIPPrefix": {
@@ -31,23 +31,23 @@
 			"type": "String"
 		},
 		"VirtualTestAppliance1Eth0IpAddress": { 
-			"defaultValue": "10.0.10.13",
+			"defaultValue": "10.0.0.13",
 			"type": "String"
 		},
 		"VirtualTestAppliance1Eth1IpAddresses": {
-			"defaultValue": ["10.0.2.22", "10.0.2.23", "10.0.2.24", "10.0.2.25", "10.0.2.26", "10.0.2.27", "10.0.2.28", "10.0.2.29", "10.0.2.30", "10.0.2.31"],
+			"defaultValue": ["10.0.1.22","10.0.1.23","10.0.1.24","10.0.1.25","10.0.1.26","10.0.1.27","10.0.1.28","10.0.1.29","10.0.1.30","10.0.1.31"],
 			"type": "Array"
 		},
 		"VirtualTestAppliance2Eth0IpAddress": {
-			"defaultValue": "10.0.10.14",
+			"defaultValue": "10.0.0.14",
 			"type": "String"
 		},
 		"VirtualTestAppliance2Eth1IpAddresses": {
-			"defaultValue": ["10.0.3.22", "10.0.3.23", "10.0.3.24", "10.0.3.25", "10.0.3.26", "10.0.3.27", "10.0.3.28", "10.0.3.29", "10.0.3.30", "10.0.3.31"],		
+			"defaultValue": ["10.0.2.22","10.0.2.23","10.0.2.24","10.0.2.25","10.0.2.26","10.0.2.27","10.0.2.28","10.0.2.29","10.0.2.30","10.0.2.31"],		
 			"type": "Array"
 		},
         "VirtualTestApplianceImageName": {
-			"defaultValue": "Ixia_Virtual_Test_Appliance_9.20.vhd",
+			"defaultValue": "Ixia_Virtual_Test_Appliance_9.20",
 			"type": "String"
 		},
 		"VirtualTestApplianceVmSize": {
@@ -60,7 +60,7 @@
 			]
 		},
 		"OptionalVMPrefix": {
-			"defaultValue": "Ixia_VE",
+			"defaultValue": "VE",
 			"type": "String"
 		},
 		"UserEmailTag": {
@@ -70,7 +70,11 @@
 		"UserProjectTag": {
 			"defaultValue": "Optional-Project-Tag",
 			"type": "String"
-		}
+		},
+		"SshKey": {
+			"defaultValue": "ssh-rsa",
+			"type": "String"
+		}		
 	},
     "variables": {
         "apiVersion": "2018-06-01",
@@ -79,7 +83,6 @@
 		"UserEmailTag": "[parameters('UserEmailTag')]",
 		"UserProjectTag": "[parameters('UserProjectTag')]",
 		"ImageResourceGroupName": "[parameters('ImageResourceGroupName')]",
-		"PageBlobsStorageAccountName": "[parameters('PageBlobsStorageAccountName')]",
 		"DiagnosticsStorageAccountName": "[parameters('DiagnosticsStorageAccountName')]",
         "VnetName": "[parameters('VnetName')]",
         "ManagementSubnetName": "[parameters('ManagementSubnetName')]",
@@ -108,7 +111,7 @@
 		"VirtualTestAppliance1DnsLabel": "[concat(toLower(variables('OptionalVMPrefix')), '-', toLower(replace(resourceGroup().name, '_', '-')), '-', 'ixia-ixload-virtualtestappliance-1', '-', substring(uniqueString(resourceGroup().id),0,6))]",
         "VirtualTestAppliance2Name": "[concat(variables('OptionalVMPrefix'), '-', 'IXIA-AZURE-IXLOAD-VIRTUALTESTAPPLIANCE2')]",
 		"VirtualTestAppliance2DnsLabel": "[concat(toLower(variables('OptionalVMPrefix')), '-', toLower(replace(resourceGroup().name, '_', '-')), '-', 'ixia-ixload-virtualtestappliance-2', '-', substring(uniqueString(resourceGroup().id),0,6))]",
-        "VirtualTestApplianceEnableAcceleratedNetworking": true,
+        "VirtualTestApplianceEnableAcceleratedNetworking": false,
         "VirtualTestApplianceEnableIPForwarding": true,
 		"VirtualTestApplianceDisablePasswordAuthentication": true,
 		"VirtualTestApplianceProvisionVMAgent": false,
@@ -121,9 +124,9 @@
         "VirtualTestApplianceImageName": "[parameters('VirtualTestApplianceImageName')]",
 		"VirtualTestApplianceImageId": "[concat('/subscriptions/', variables('SubscriptionId'), '/resourceGroups/', variables('ImageResourceGroupName'), '/providers/Microsoft.Compute/images/', variables('VirtualTestApplianceImageName'))]",		
 		"VirtualTestApplianceCreateOption": "FromImage",		
-		"AdminUserName": "Ixia-Admin",
-		"SshPublicKeyData": "ssh-rsa",
-		"SshKeyPath": "[concat('/home/',variables('AdminUserName'),'/.ssh/authorized_keys')]"
+		"AdminUsername": "Ixia-Admin",
+		"SshPublicKeyData": "[parameters('SshKey')]",
+		"SshKeyPath": "[concat('/home/',variables('AdminUsername'),'/.ssh/authorized_keys')]"
 	},
     "resources": [
         {
@@ -511,8 +514,8 @@
                     "dnsServers": [],
                     "appliedDnsServers": []
                 },
-                "enableAcceleratedNetworking": "[variables('VirtualTestAppliance2EnableAcceleratedNetworking')]",
-                "enableIPForwarding": "[variables('VirtualTestAppliance2EnableIPForwarding')]",
+                "enableAcceleratedNetworking": "[variables('VirtualTestApplianceEnableAcceleratedNetworking')]",
+                "enableIPForwarding": "[variables('VirtualTestApplianceEnableIPForwarding')]",
                 "networkSecurityGroup": {
                     "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('MgmtNetworkSecurityGroupName'))]"
                 },
@@ -663,8 +666,8 @@
                     "dnsServers": [],
                     "appliedDnsServers": []
                 },
-                "enableAcceleratedNetworking": "[variables('VirtualTestAppliance2EnableAcceleratedNetworking')]",
-                "enableIPForwarding": "[variables('VirtualTestAppliance2EnableIPForwarding')]",
+                "enableAcceleratedNetworking": "[variables('VirtualTestApplianceEnableAcceleratedNetworking')]",
+                "enableIPForwarding": "[variables('VirtualTestApplianceEnableIPForwarding')]",
                 "networkSecurityGroup": {
                     "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('Test2NetworkSecurityGroupName'))]"
                 },
@@ -754,7 +757,7 @@
                 },
 				"osProfile": {
 					"computerName": "[variables('VirtualTestAppliance1Name')]",
-					"adminUsername": "[variables('AdminUserName')]",
+					"adminUsername": "[variables('AdminUsername')]",
 					"linuxConfiguration": {
 						"disablePasswordAuthentication": "[variables('VirtualTestApplianceDisablePasswordAuthentication')]",
 						"provisionVMAgent": "[variables('VirtualTestApplianceProvisionVMAgent')]",
@@ -828,10 +831,10 @@
                 },
 				"osProfile": {
 					"computerName": "[variables('VirtualTestAppliance2Name')]",
-					"adminUsername": "[variables('AdminUserName')]",
+					"adminUsername": "[variables('AdminUsername')]",
 					"linuxConfiguration": {
-						"disablePasswordAuthentication": "[variables('VirtualTestAppliance2DisablePasswordAuthentication')]",
-						"provisionVMAgent": "[variables('VirtualTestAppliance2ProvisionVMAgent')]",
+						"disablePasswordAuthentication": "[variables('VirtualTestApplianceDisablePasswordAuthentication')]",
+						"provisionVMAgent": "[variables('VirtualTestApplianceProvisionVMAgent')]",
 						"ssh": {
 						  "publicKeys": [
 							{
@@ -860,7 +863,7 @@
                 },
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
-                        "enabled": "[variables('VirtualTestAppliance2BootDiagnosticsEnabled')]",
+                        "enabled": "[variables('VirtualTestApplianceBootDiagnosticsEnabled')]",
                         "storageUri": "[concat('https', '://', variables('DiagnosticsStorageAccountName'), '.blob.core.windows.net', '/')]"
                     }
                 }
