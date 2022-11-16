@@ -30,7 +30,7 @@ then
 fi
 
 #source
-source_ixload_ve_client_blob=ixload-ve-client-9-20.vhd
+source_ixload_ve_client_blob=ixload-ve-client-9-20-su1.vhd
 source_virtual_test_appliance_blob=Ixia_Virtual_Test_Appliance_9.20.vhd
 source_ixloadve_account_name=ixvm920
 source_ixload_ve_client_container=ixloadveclient920
@@ -41,7 +41,7 @@ source_ixloadve_account_key=MBdR1Y5wYn8rArs9JJ5YIbC3zTSLzeN3kJ8Mnt4hgLlYbTE4cPbI
 destination_resource_group_name=$1
 destination_account_name=$2
 destination_container_name=ixloadve920
-destination_ixload_ve_client_blob=ixload-ve-client-9-20.vhd
+destination_ixload_ve_client_blob=ixload-ve-client-9-20-su1.vhd
 destination_virtual_test_appliance_blob=Ixia_Virtual_Test_Appliance_9.20.vhd
 destination_ixload_ve_client_vmImage=$(basename $destination_ixload_ve_client_blob .vhd)
 destination_virtual_test_appliance_vmImage=$(basename $destination_virtual_test_appliance_blob .vhd)
