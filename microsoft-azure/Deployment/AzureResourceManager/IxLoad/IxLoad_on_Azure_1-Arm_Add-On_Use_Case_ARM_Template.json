@@ -6,19 +6,15 @@
 			"defaultValue": "ixvm920",
 			"type": "String"
 		},
-		"PageBlobsStorageAccountName": {
-			"defaultValue": "ixvm920",
-			"type": "String"
-		},
 		"DiagnosticsStorageAccountName": {
-			"defaultValue": "Ixia_VE_Diagnostics",
+			"defaultValue": "ixvm920",
 			"type": "String"
 		},	
 		"VnetName": {
 			"defaultValue": "IXIA_AZURE_VNET",
 			"type": "String"
 		},
-        "ManagementSubnetName": {
+        "MgmtSubnetName": {
 			"defaultValue": "IXIA_AZURE_VNET_MGMT_SUBNET",
 			"type": "String"
 		},
@@ -30,10 +26,6 @@
 			"defaultValue": "42.42.42.42/32",
 			"type": "String"
 		},
-        "IxiaClientPageBlobName": {
-			"defaultValue": "ixload-ve-client-9-20.vhd",
-			"type": "String"
-		},
         "IxLoadClientVmSize": {
 			"defaultValue": "Standard_F4s",
 			"type": "String",
@@ -41,6 +33,18 @@
 				"Standard_F4s",
 				"Standard_F4s_v2"
 			]
+		},
+		"IxiaClientImageName": {
+			"defaultValue": "ixload-ve-client-9-20-su1",
+			"type": "String"
+		},
+		"IxiaClientUsername": {
+			"defaultValue": "",
+			"type": "String"
+		},
+		"IxiaClientPassword": {
+			"defaultValue": "",
+			"type": "securestring"
 		},
 		"VirtualTestAppliance1Eth0IpAddress": { 
 			"defaultValue": "10.0.10.13",
@@ -51,11 +55,11 @@
 			"type": "Array"
 		},
         "VirtualTestApplianceImageName": {
-			"defaultValue": "Ixia_Virtual_Test_Appliance_9.20.vhd",
+			"defaultValue": "Ixia_Virtual_Test_Appliance_9.20",
 			"type": "String"
 		},
 		"VirtualTestApplianceVmSize": {
-			"defaultValue": "Standard_F16s",
+			"defaultValue": "Standard_F8s",
 			"type": "String",
 			"allowedValues": [
 				"Standard_F16s",
@@ -64,7 +68,7 @@
 			]
 		},
 		"OptionalVMPrefix": {
-			"defaultValue": "Ixia",
+			"defaultValue": "",
 			"type": "String"
 		},
 		"UserEmailTag": {
@@ -76,9 +80,13 @@
 			"type": "String"
 		},
 		"UserOptionsTag": {
-			"defaultValue": "MANUAL",
+			"defaultValue": "Optional-Options-Tag",
 			"type": "String"
-		}
+		},
+		"SshKey": {
+			"defaultValue": "ssh-rsa",
+			"type": "String"
+		}		
 	},
     "variables": {
         "apiVersion": "2018-06-01",
@@ -88,11 +96,10 @@
 		"UserProjectTag": "[parameters('UserProjectTag')]",
 		"UserOptionsTag": "[parameters('UserOptionsTag')]",
 		"ImageResourceGroupName": "[parameters('ImageResourceGroupName')]",
-		"PageBlobsStorageAccountName": "[parameters('PageBlobsStorageAccountName')]",
 		"DiagnosticsStorageAccountName": "[parameters('DiagnosticsStorageAccountName')]",
         "VnetName": "[parameters('VnetName')]",
-        "ManagementSubnetName": "[parameters('ManagementSubnetName')]",
-		"MgmtSubnetRef": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', variables('VnetName'),  variables('ManagementSubnetName'))]",
+        "MgmtSubnetName": "[parameters('MgmtSubnetName')]",
+		"MgmtSubnetRef": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', variables('VnetName'),  variables('MgmtSubnetName'))]",
         "Test1SubnetName": "[parameters('Test1SubnetName')]",
         "Test1SubnetRef": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', variables('VnetName'),  variables('Test1SubnetName'))]",
         "MgmtNetworkSecurityGroupName": "[concat(variables('OptionalVMPrefix'), '_', 'IXIA_AZURE_NETWORK_SECURITY_GROUP')]",
@@ -108,15 +115,15 @@
 		"VirtualTestAppliance1Eth0IpAddress": "[parameters('VirtualTestAppliance1Eth0IpAddress')]",
 		"VirtualTestAppliance1Eth1IpAddresses": "[parameters('VirtualTestAppliance1Eth1IpAddresses')]",
         "IxiaClientName": "[concat(variables('OptionalVMPrefix'), '-', 'IXIA-AZURE-IXLOAD-CLIENT')]",
-		"IxiaClientDnsLabel": "[concat(toLower(variables('OptionalVMPrefix')), '-', toLower(replace(resourceGroup().name, '_', '-')), '-', 'ixia-ixload-client', '-', substring(uniqueString(resourceGroup().id),0,6))]",
+		"IxiaClientDnsLabel": "[concat(toLower(variables('OptionalVMPrefix')), '-', toLower(replace(resourceGroup().name, '_', '-')), '-', 'ixload-client', '-', substring(uniqueString(resourceGroup().id),0,6))]",
         "IxiaClientEnableAcceleratedNetworking": false,
         "IxiaClientEnableIPForwarding": false,
 		"IxiaClientBootDiagnosticsEnabled": true,
         "IxLoadClientVmSize": "[parameters('IxLoadClientVmSize')]",
-		"IxiaClientDiskSizeGB": "127",
+        "IxClientName": "[concat(variables('OptionalVMPrefix'), '-', 'IXLOAD-CLIENT')]",
         "VirtualTestAppliance1Name": "[concat(variables('OptionalVMPrefix'), '-', 'IXIA-AZURE-IXLOAD-VIRTUALTESTAPPLIANCE1')]",
-		"VirtualTestAppliance1DnsLabel": "[concat(toLower(variables('OptionalVMPrefix')), '-', toLower(replace(resourceGroup().name, '_', '-')), '-', 'ixia-ixload-virtualtestappliance-1', '-', substring(uniqueString(resourceGroup().id),0,6))]",
-        "VirtualTestApplianceEnableAcceleratedNetworking": true,
+		"VirtualTestAppliance1DnsLabel": "[concat(toLower(variables('OptionalVMPrefix')), '-', toLower(replace(resourceGroup().name, '_', '-')), '-', 'ixload-virtualtestappliance-1', '-', substring(uniqueString(resourceGroup().id),0,6))]",
+        "VirtualTestApplianceEnableAcceleratedNetworking": false,
         "VirtualTestApplianceEnableIPForwarding": true,
 		"VirtualTestApplianceDisablePasswordAuthentication": true,
 		"VirtualTestApplianceProvisionVMAgent": false,
@@ -125,15 +132,16 @@
 		"VirtualTestApplianceDiskSizeGB": "14",
         "MgmtPublicIpAddressName": "[concat(variables('OptionalVMPrefix'), '_', 'IXIA_AZURE_MGMT_PUBLIC_IP')]",
         "VirtualTestAppliance1Eth0PublicIpAddressName": "[concat(variables('OptionalVMPrefix'), '_', 'IXIA_AZURE_IXLOAD_VIRTUALTESTAPPLIANCE1_ETH0_PUBLIC_IP')]",
-        "IxiaClientPageBlobName": "[parameters('IxiaClientPageBlobName')]",
-		"IxiaClientPageBlobPath": "[concat('/vhds/', variables('IxiaClientPageBlobName'))]",
 		"IxiaClientCreateOption": "Attach",
+        "IxiaClientImageName": "[parameters('IxiaClientImageName')]",
+		"IxiaClientImageId": "[concat('/subscriptions/', variables('SubscriptionId'), '/resourceGroups/', variables('ImageResourceGroupName'), '/providers/Microsoft.Compute/images/', variables('IxiaClientImageName'))]",	
         "VirtualTestApplianceImageName": "[parameters('VirtualTestApplianceImageName')]",
 		"VirtualTestApplianceImageId": "[concat('/subscriptions/', variables('SubscriptionId'), '/resourceGroups/', variables('ImageResourceGroupName'), '/providers/Microsoft.Compute/images/', variables('VirtualTestApplianceImageName'))]",		
 		"VirtualTestApplianceCreateOption": "FromImage",		
-		"AdminUserName": "Ixia-Admin",
-		"SshPublicKeyData": "ssh-rsa",
-		"SshKeyPath": "[concat('/home/',variables('AdminUserName'),'/.ssh/authorized_keys')]"
+		"AdminUsername": "[parameters('IxiaClientUsername')]",
+		"AdminPassword": "[parameters('IxiaClientPassword')]",
+		"SshPublicKeyData": "[parameters('SshKey')]",
+		"SshKeyPath": "[concat('/home/',variables('AdminUsername'),'/.ssh/authorized_keys')]"
 	},
     "resources": [
         {
@@ -573,16 +581,14 @@
                 "hardwareProfile": {
                     "vmSize": "[variables('IxLoadClientVmSize')]"
                 },
+				"osProfile": {
+					"computerName": "[variables('IxClientName')]",
+					"adminUsername": "[variables('AdminUsername')]",
+					"adminPassword": "[variables('AdminPassword')]"
+				},
                 "storageProfile": {
-                    "osDisk": {
-                        "osType": "Windows",
-                        "name": "[concat('disk_', variables('IxiaClientName'))]",
-                        "createOption": "[variables('IxiaClientCreateOption')]",
-                        "vhd": {
-                            "uri": "[concat('https', '://', variables('PageBlobsStorageAccountName'), '.blob.core.windows.net', variables('IxiaClientPageBlobPath'))]"
-                        },
-                        "caching": "ReadWrite",
-                        "diskSizeGB": "[variables('IxiaClientDiskSizeGB')]"
+					"imageReference": {
+                        "id": "[variables('IxiaClientImageId')]"
                     },
                     "dataDisks": []
                 },
@@ -640,7 +646,7 @@
                 },
 				"osProfile": {
 					"computerName": "[variables('VirtualTestAppliance1Name')]",
-					"adminUsername": "[variables('AdminUserName')]",
+					"adminUsername": "[variables('AdminUsername')]",
 					"linuxConfiguration": {
 						"disablePasswordAuthentication": "[variables('VirtualTestApplianceDisablePasswordAuthentication')]",
 						"provisionVMAgent": "[variables('VirtualTestApplianceProvisionVMAgent')]",
