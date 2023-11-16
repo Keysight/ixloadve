@@ -17,5 +17,5 @@ resource "aws_security_group_rule" "PublicIngress3389" {
 	protocol = "tcp"
 	from_port = 3389
 	to_port = 3389
-	cidr_blocks = [ local.InboundIPv4CidrBlock ]
+	cidr_blocks = local.InboundIPv4CidrBlocks
 }
