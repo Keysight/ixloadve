@@ -1,6 +1,6 @@
 # ClientId = "00000000-0000-0000-0000-000000000000"
 # ClientSecret = "ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567"
-# PublicSecurityRuleSourceIpPrefix = "1.1.1.1/32"
+# PublicSecurityRuleSourceIpPrefixes = [ "1.1.1.1/32" ]
 # ResourceGroupName = "azure-ixload-2-agents"
 # SubscriptionId = "00000000-0000-0000-0000-000000000000"
 # TenantId = "00000000-0000-0000-0000-000000000000"
