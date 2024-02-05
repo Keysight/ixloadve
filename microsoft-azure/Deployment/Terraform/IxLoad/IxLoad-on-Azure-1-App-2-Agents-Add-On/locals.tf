@@ -8,7 +8,7 @@ locals {
 	AppAdminUserName = var.AppAdminUserName
 	AppTag = "ixload"
 	AppVmSize = var.AppVmSize
-	Preamble = "${local.UserLoginTag}-${local.AppTag}"
+	Preamble = "${local.UserLoginTag}-${local.UserProjectTag}-${local.AppTag}"
 	PrivateSubnetName = var.PrivateSubnetName
 	PublicRdpSecurityRuleName = "${local.Preamble}-rdp-rule"
 	PublicSecurityRuleSourceIpPrefixes = var.PublicSecurityRuleSourceIpPrefixes
