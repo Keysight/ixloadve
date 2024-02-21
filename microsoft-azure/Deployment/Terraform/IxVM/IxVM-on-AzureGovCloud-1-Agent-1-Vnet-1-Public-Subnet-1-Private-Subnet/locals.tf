@@ -2,8 +2,7 @@ locals {
 	AgentVmSize = var.AgentVmSize
 	Agent1InstanceId = "agent1"
 	AppTag = "ixload"
-	AppVersion = "9-36"
-	Preamble = "${local.UserLoginTag}-${local.AppTag}-${local.AppVersion}"
+	Preamble = "${local.UserLoginTag}-${local.UserProjectTag}-${local.AppTag}"
 	PublicSecurityRuleSourceIpPrefixes = var.PublicSecurityRuleSourceIpPrefixes
 	ResourceGroupLocation = var.ResourceGroupLocation
 	ResourceGroupName = var.ResourceGroupName
