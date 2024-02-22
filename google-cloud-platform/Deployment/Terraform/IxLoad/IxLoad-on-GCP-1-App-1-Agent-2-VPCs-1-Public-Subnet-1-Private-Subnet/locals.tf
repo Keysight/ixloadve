@@ -3,7 +3,6 @@ locals {
 	Agent1InstanceId = "agent1"
 	AppMachineType = var.AppMachineType
 	AppTag = "ixload"
-	AppVersion = "9-36"
 	PublicFirewallRuleSourceIpRanges = var.PublicFirewallRuleSourceIpRanges
 	UserEmailTag = var.UserEmailTag
 	UserLoginTag = var.UserLoginTag
