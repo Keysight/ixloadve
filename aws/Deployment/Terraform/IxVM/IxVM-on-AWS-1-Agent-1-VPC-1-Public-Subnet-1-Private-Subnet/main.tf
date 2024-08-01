@@ -1,6 +1,5 @@
 module "Agent1" {
-	source = "armdupre/module-ixload-agent/aws"
-	version = "10.40.1"
+	source = "git::https://github.com/armdupre/terraform-aws-module-ixload-agent.git?ref=10.40.1"
 	Eth0SecurityGroupId = module.Vpc.PublicSecurityGroup.id
 	Eth0SubnetId = module.Vpc.PublicSubnet.id
 	Eth1SecurityGroupId = module.Vpc.PrivateSecurityGroup.id
