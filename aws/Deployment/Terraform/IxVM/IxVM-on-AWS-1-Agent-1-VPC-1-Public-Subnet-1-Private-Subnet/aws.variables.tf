@@ -11,4 +11,3 @@ variable "AwsAccessCredentialsSecretKey" {
 	sensitive = true
 	type = string
 }
-
