@@ -9,7 +9,7 @@ locals {
 	PrivateSubnetAvailabilityZone = var.PrivateSubnetAvailabilityZone
 	PublicSubnetAvailabilityZone = var.PublicSubnetAvailabilityZone
 	Region = data.aws_region.current.name
-	UserEmailTag = var.UserEmailTag
-	UserLoginTag = var.UserLoginTag
-	UserProjectTag = var.UserProjectTag
+	UserEmailTag = var.UserEmailTag == null ? data.aws_caller_identity.current.user_id : var.UserEmailTag
+	UserLoginTag = var.UserLoginTag == null ? "terraform" : var.UserLoginTag
+	UserProjectTag = var.UserProjectTag == null ? random_id.RandomId.id : var.UserProjectTag
 }
