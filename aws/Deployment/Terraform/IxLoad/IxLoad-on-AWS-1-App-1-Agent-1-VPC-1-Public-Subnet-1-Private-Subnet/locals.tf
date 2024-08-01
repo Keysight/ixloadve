@@ -1,9 +1,12 @@
 locals {
 	AgentInstanceType = var.AgentInstanceType
 	Agent1InstanceId = "agent1"
+	ApiMaxRetries = var.ApiMaxRetries
 	AppInstanceType = var.AppInstanceType
 	AppTag = "ixload"
-	InboundIPv4CidrBlocks = var.InboundIPv4CidrBlocks
+	AwsAccessCredentialsAccessKey = var.AwsAccessCredentialsAccessKey
+	AwsAccessCredentialsSecretKey = var.AwsAccessCredentialsSecretKey
+	InboundIPv4CidrBlocks = var.InboundIPv4CidrBlocks == null ? [ "${data.http.ip.response_body}/32" ] : var.InboundIPv4CidrBlocks
 	PlacementGroupName = "${local.Preamble}-placement-group-${local.Region}"
 	PlacementGroupStrategy = "cluster"
 	Preamble = "${local.UserLoginTag}-${local.UserProjectTag}-${local.AppTag}"
