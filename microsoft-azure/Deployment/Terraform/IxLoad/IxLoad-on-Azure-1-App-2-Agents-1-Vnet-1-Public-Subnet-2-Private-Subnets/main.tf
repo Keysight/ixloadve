@@ -1,6 +1,5 @@
 module "App" {
-	source = "armdupre/module-ixload-app/azurerm"
-	version = "10.40.0"
+	source = "git::https://github.com/armdupre/terraform-azurerm-module-ixload-app.git?ref=10.40.0"
 	AdminPassword = local.AppAdminPassword
 	AdminUserName = local.AppAdminUserName
 	Eth0SubnetId = module.Vnet.PublicSubnet.id
@@ -16,8 +15,7 @@ module "App" {
 }
 
 module "Agent1" {
-	source = "armdupre/module-ixload-agent/azurerm"
-	version = "10.40.0"
+	source = "git::https://github.com/armdupre/terraform-azurerm-module-ixload-agent.git?ref=10.40.0"
 	Eth0SubnetId = module.Vnet.PublicSubnet.id
 	Eth1SubnetId = module.Vnet.Private1Subnet.id
 	InstanceId = local.Agent1InstanceId
@@ -36,8 +34,7 @@ module "Agent1" {
 }
 
 module "Agent2" {
-	source = "armdupre/module-ixload-agent/azurerm"
-	version = "10.40.0"
+	source = "git::https://github.com/armdupre/terraform-azurerm-module-ixload-agent.git?ref=10.40.0"
 	Eth0IpAddress = local.Agent2Eth0IpAddress
 	Eth0SubnetId = module.Vnet.PublicSubnet.id
 	Eth1IpAddresses = local.Agent2Eth1IpAddresses
