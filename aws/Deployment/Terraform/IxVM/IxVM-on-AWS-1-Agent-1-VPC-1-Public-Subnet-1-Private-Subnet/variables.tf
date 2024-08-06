@@ -19,8 +19,6 @@ variable "AgentInstanceType" {
 								"c5n.xlarge", "c5n.2xlarge", "c5n.4xlarge", "c5n.9xlarge", "c5n.18xlarge",
 								"c4.xlarge", "c4.2xlarge", "c4.4xlarge", "c4.8xlarge"
 							], var.AgentInstanceType)
-
-
 		error_message = <<EOF
 AgentInstanceType must be one of the following types:
 	t3.xlarge, t3.2xlarge,
@@ -47,19 +45,8 @@ variable "ApiMaxRetries" {
 	type = number
 }
 
-variable "AwsAccessCredentialsAccessKey" {
-	description = "Access key component of credentials used for programmatic calls to AWS."
-	sensitive = true
-	type = string
-}
-
-variable "AwsAccessCredentialsSecretKey" {
-	description = "Secret access key component of credentials used for programmatic calls to AWS."
-	sensitive = true
-	type = string
-}
-
 variable "InboundIPv4CidrBlocks" {
+	default = null
 	description = "List of IP Addresses /32 or IP CIDR ranges connecting inbound to App"
 	type = list(string)
 }
@@ -80,25 +67,27 @@ variable "Region" {
 }
 
 variable "UserEmailTag" {
+	default = null
 	description = "Email address tag of user creating the deployment"
 	type = string
 	validation {
-		condition = length(var.UserEmailTag) >= 14
+		condition = var.UserEmailTag == null ? true : length(var.UserEmailTag) >= 14
 		error_message = "UserEmailTag minimum length must be >= 14."
 	}
 }
 
 variable "UserLoginTag" {
+	default = null
 	description = "Login ID tag of user creating the deployment"
 	type = string
 	validation {
-		condition = length(var.UserLoginTag) >= 4
+		condition = var.UserLoginTag == null ? true : length(var.UserLoginTag) >= 4
 		error_message = "UserLoginTag minimum length must be >= 4."
 	}
 }
 
 variable "UserProjectTag" {
-	default = "cloud-ist"
+	default = null
 	description = "Project tag of user creating the deployment"
 	type = string
 }

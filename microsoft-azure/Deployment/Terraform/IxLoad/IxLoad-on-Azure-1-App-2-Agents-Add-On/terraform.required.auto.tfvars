@@ -1,12 +1,5 @@
 # AppAdminPassword = "example-password"
-# ClientId = "00000000-0000-0000-0000-000000000000"
-# ClientSecret = "ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567"
 # PrivateSubnetName = "terraform-azure-demo-vnet-private-subnet"
-# PublicSecurityRuleSourceIpPrefixes = [ "1.1.1.1/32" ]
 # PublicSubnetName = "terraform-azure-demo-vnet-public-subnet"
-# ResourceGroupName = "azure-ixload-1-app-2-agents"
-# SubscriptionId = "00000000-0000-0000-0000-000000000000"
-# TenantId = "00000000-0000-0000-0000-000000000000"
-# UserEmailTag = "terraform@example.com"
-# UserLoginTag = "terraform"
+# ResourceGroupName = "azure-ixnetwork-1-app-2-agents"
 # VnetName = "terraform-azure-demo-vnet-vnet"
