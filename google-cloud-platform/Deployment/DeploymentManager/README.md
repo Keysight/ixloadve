@@ -1,13 +1,5 @@
 ## <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/1920px-Google_Cloud_logo.svg.png" alt="GCP Logo" width="150"/> Google Cloud Platform (GCP)
 
-### 🔧 Configurations
-
-This folder contains several IxNetwork VE .bpt configurations that can be used on their respective instance sizes. 
-We have 4 different folders: 
-- C2-STANDARD-4
-- C2-STANDARD-8
-- C2-STANDARD-16
-
 ### 🚀 Deployment
 
 Version **11.00** of IxLoad Virtual Edition is available on the GCP Marketplace here:
@@ -32,7 +24,7 @@ Located in `google-cloud-platform/Deployment/DeploymentManager/IxLoad-FullDeploy
   - **Demo Use Case**: Full deployment including networking, security groups, etc.
 ---
 
-#### 🧪 Example #1: Deploying a Demo Use Case Template with one Virtual IxLoad VE (Client + Test Appliance) on a Single VM
+#### 🧪 Example #1: Deploying a Demo Use Case Template with one IxLoad VE Client and one Virtual Test Appliance
 
 **Resources Created:**
 - 1x IxLoad VE Client
@@ -64,7 +56,7 @@ Located in `google-cloud-platform/Deployment/DeploymentManager/IxLoad-FullDeploy
 gcloud deployment-manager deployments create GCP-1-VTA-Demo-Use-Case --template GCP-1-VTA-Demo-Use-Case.jinja
 ```
 
-#### 🧪 Example #2: Deploying a Demo Use Case Template with one Virtual IxLoad Client and two Virtual Test Appliances
+#### 🧪 Example #2: Deploying a Demo Use Case Template with one IxLoad VE Client and two Virtual Test Appliances
 
 **Resources Created:**
 - 1x IxLoad VE Client

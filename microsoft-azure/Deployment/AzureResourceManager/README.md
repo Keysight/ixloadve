@@ -1,9 +1,5 @@
 ## <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Microsoft_Azure.svg/1024px-Microsoft_Azure.svg.png" alt="Azure Logo" width="150"/> Microsoft Azure
 
-### 🔧 Configurations
-
-This folder contains one IxLoad Virtual Edition configuration for your use cases. 
-
 ### 🚀 Deployment
 
 Version **11.00** of IxLoad Virtual Edition is available on the Microsoft Azure Marketplace here:
