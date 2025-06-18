@@ -2,7 +2,7 @@
 
 ### 🔧 Configurations
 
-This section includes `.bpt` configuration files tailored for specific AWS instance types:
+This section includes `.rxf` configuration files tailored for specific AWS instance types:
 
 - `c5.xlarge`
 - `c5n.xlarge`
@@ -77,7 +77,7 @@ aws cloudformation create-stack \
 - Replace file paths and parameter files with your actual paths if different.
 ---
 
-#### 🧪 Example #3: Deploying a Demo Use Case Template with a single Virtual Test Appliance
+#### 🧪 Example #3: Deploying a Demo Use Case Template with one Virtual Test Appliance
 
 **Resources Created:**
 - 1x Virtual Test Appliance

@@ -16,7 +16,7 @@ This repository provides deployment configurations and templates for **IxLoad VE
 
 ### 🔧 Configurations
 
-This section includes `.bpt` configuration files tailored for specific AWS instance types:
+This section includes `.rxf` configuration files tailored for specific AWS instance types:
 
 - `c5.xlarge`
 - `c5n.xlarge`
@@ -91,7 +91,7 @@ aws cloudformation create-stack \
 - Replace file paths and parameter files with your actual paths if different.
 ---
 
-#### 🧪 Example #3: Deploying a Demo Use Case Template with a single Virtual Test Appliance
+#### 🧪 Example #3: Deploying a Demo Use Case Template with one Virtual Test Appliance
 
 **Resources Created:**
 - 1x Virtual Test Appliance
@@ -133,7 +133,7 @@ aws cloudformation create-stack \
 
 ### 🔧 Configurations
 
-This folder contains several IxNetwork VE .bpt configurations that can be used on their respective instance sizes. 
+This folder contains several IxLoad VE .rxf configurations that can be used on their respective instance sizes. 
 We have 4 different folders: 
 - C2-STANDARD-4
 - C2-STANDARD-8
@@ -163,7 +163,7 @@ Located in `google-cloud-platform/Deployment/DeploymentManager/IxLoad-FullDeploy
   - **Demo Use Case**: Full deployment including networking, security groups, etc.
 ---
 
-#### 🧪 Example #1: Deploying a Demo Use Case Template with one Virtual IxLoad VE (Client + Test Appliance) on a Single VM
+#### 🧪 Example #1: Deploying a Demo Use Case Template with one IxLoad VE Client and one Virtual Test Appliance
 
 **Resources Created:**
 - 1x IxLoad VE Client
@@ -323,7 +323,7 @@ Located in `microsoft-azure/Deployment/AzureResourceManager/IxLoad-FullDeploymen
   - **Add-On Use Case**: Designed to integrate with existing infrastructure
 ---
 
-#### 🧪 Example #1: Deploying a Demo Use Case Template with one Virtual IxLoad VE Client + a single Virtual Test Appliance
+#### 🧪 Example #1: Deploying a Demo Use Case Template with one Virtual IxLoad VE Client and one Virtual Test Appliance
 
 **Resources Created:**
 - 1x IxLoad VE Client
@@ -364,7 +364,7 @@ az deployment group create --name IxLoad-demo-01 --resource-group IxLoad-demo-01
 az deployment group create --name IxLoad-addon-01 --resource-group IxLoad-addon-01 --template-file Azure-VTA-1-Arm_Add-On_Use_Case_Template.json  --parameters Azure-VTA-1-Arm_Add-On_Use_Case_Parameters.json
 ```
 
-#### 🧪 Example #3: Deploying a Demo Use Case Template with a single Virtual Test Appliance
+#### 🧪 Example #3: Deploying a Demo Use Case Template with one Virtual Test Appliance
 
 **Resources Created:**
 - 1x Virtual Test Appliance

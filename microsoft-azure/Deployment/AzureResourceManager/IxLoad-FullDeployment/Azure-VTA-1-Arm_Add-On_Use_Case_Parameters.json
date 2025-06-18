@@ -14,13 +14,13 @@
     "ManagementSecurityRuleSourceIPPrefix": {
       "value": "213.249.122.234/32"
     },
-    "IxNetworkClientVmSize": {
+    "IxLoadClientVmSize": {
       "value": "Standard_F4s_v2"
     },
-    "IxNetworkClientUsername": {
+    "IxLoadClientUsername": {
       "value": "ixia"
     },
-    "IxNetworkClientPassword": {
+    "IxLoadClientPassword": {
       "value": "strongPassword1234*"
     },
     "VirtualTestApplianceAdminUsername": {

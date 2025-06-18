@@ -29,7 +29,7 @@ Located in `microsoft-azure/Deployment/AzureResourceManager/IxLoad-FullDeploymen
   - **Add-On Use Case**: Designed to integrate with existing infrastructure
 ---
 
-#### 🧪 Example #1: Deploying a Demo Use Case Template with one Virtual IxLoad VE Client + a single Virtual Test Appliance
+#### 🧪 Example #1: Deploying a Demo Use Case Template with one Virtual IxLoad VE Client and one Virtual Test Appliance
 
 **Resources Created:**
 - 1x IxLoad VE Client

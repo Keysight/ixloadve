@@ -6,7 +6,7 @@
 			"defaultValue": "213.249.122.234/32",
 			"type": "String"
 		},
-        "IxNetworkClientVmSize": {
+        "IxLoadClientVmSize": {
 			"defaultValue": "Standard_F4s_v2",
 			"type": "String",
 			"allowedValues": [
@@ -14,11 +14,11 @@
 				"Standard_F8s_v2"
 			]
 		},
-		"IxNetworkClientUsername": {
+		"IxLoadClientUsername": {
 			"minLength": 1,
 			"type": "String"
 		},
-		"IxNetworkClientPassword": {
+		"IxLoadClientPassword": {
 			"type": "securestring"
 		},
 		"VirtualTestApplianceAdminUsername": {
@@ -69,15 +69,15 @@
         "MgmtHttpsSecurityRuleName": "[concat(variables('OptionalVMPrefix'), '_', 'HTTPS_RULE')]",
         "MgmtRdpSecurityRuleName": "[concat(variables('OptionalVMPrefix'), '_', 'RDP_RULE')]",
         "ManagementSecurityRuleSourceIPPrefix": "[parameters('ManagementSecurityRuleSourceIPPrefix')]",
-        "IxNetworkClientEth0Name": "[concat(variables('OptionalVMPrefix'), '_', 'IXNETWORK_CLIENT_ETH0')]",
+        "IxLoadClientEth0Name": "[concat(variables('OptionalVMPrefix'), '_', 'IXNETWORK_CLIENT_ETH0')]",
         "VirtualTestAppliance1Eth0Name": "[concat(variables('OptionalVMPrefix'), '_', 'IXNETWORK_VIRTUALTESTAPPLIANCE1_ETH0')]",
         "VirtualTestAppliance1Eth1Name": "[concat(variables('OptionalVMPrefix'), '_', 'IXNETWORK_VIRTUALTESTAPPLIANCE1_ETH1')]",
 		"VirtualTestAppliance1Eth0IpAddress": "10.0.10.11",
 		"VirtualTestAppliance1Eth1IpAddresses": ["10.0.2.12", "10.0.2.13", "10.0.2.14", "10.0.2.15", "10.0.2.16", "10.0.2.17", "10.0.2.18", "10.0.2.19", "10.0.2.20", "10.0.2.21"],
-		"IxNetworkClientName": "[concat(variables('OptionalVMPrefix'), '-', 'IXNETWORK-WI')]",
-		"IxNetworkClientDnsLabel": "[concat(toLower(variables('OptionalVMPrefix')), '-', 'ixn-client', '-', substring(uniqueString(resourceGroup().id),0,6))]",
+		"IxLoadClientName": "[concat(variables('OptionalVMPrefix'), '-', 'IXNETWORK-WI')]",
+		"IxLoadClientDnsLabel": "[concat(toLower(variables('OptionalVMPrefix')), '-', 'ixn-client', '-', substring(uniqueString(resourceGroup().id),0,6))]",
         "EnableAcceleratedNetworking": false,
-        "IxNetworkClientEnableIPForwarding": false,
+        "IxLoadClientEnableIPForwarding": false,
 		"BootDiagnosticsEnabled": true,
         "VirtualTestAppliance1Name": "[concat(variables('OptionalVMPrefix'), '-', 'IXNETWORK-VIRTUALTESTAPPLIANCE1')]",
 		"VirtualTestAppliance1DnsLabel": "[concat(toLower(variables('OptionalVMPrefix')), '-', 'ixn-vta-1', '-', substring(uniqueString(resourceGroup().id),0,6))]",
@@ -85,7 +85,7 @@
 		"VirtualTestApplianceDisablePasswordAuthentication": false,
 		"VirtualTestApplianceProvisionVMAgent": true,
 		"VirtualTestApplianceDiskSizeGB": "30",
-		"IxNetworkClientDiskSizeGB": "127",
+		"IxLoadClientDiskSizeGB": "127",
         "MgmtPublicIpAddressName": "[concat(variables('OptionalVMPrefix'), '_', 'MGMT_PUBLIC_IP')]",
         "VirtualTestAppliance1Eth0PublicIpAddressName": "[concat(variables('OptionalVMPrefix'), '_', 'IXNETWORK_VIRTUALTESTAPPLIANCE1_ETH0_PUBLIC_IP')]",
 		"CreateOption": "FromImage"
@@ -274,7 +274,7 @@
         
         {
             "type": "Microsoft.Network/networkInterfaces",
-            "name": "[variables('IxNetworkClientEth0Name')]",
+            "name": "[variables('IxLoadClientEth0Name')]",
             "apiVersion": "[variables('apiVersion')]",
             "location": "[resourceGroup().location]",
             "scale": null,
@@ -306,13 +306,13 @@
                     "appliedDnsServers": []
                 },
                 "enableAcceleratedNetworking": true,
-                "enableIPForwarding": "[variables('IxNetworkClientEnableIPForwarding')]",
+                "enableIPForwarding": "[variables('IxLoadClientEnableIPForwarding')]",
                 "networkSecurityGroup": {
                     "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('MgmtNetworkSecurityGroupName'))]"
                 },
                 "primary": true,
                 "virtualMachine": {
-                    "id": "[resourceId('Microsoft.Compute/virtualMachines', variables('IxNetworkClientName'))]"
+                    "id": "[resourceId('Microsoft.Compute/virtualMachines', variables('IxLoadClientName'))]"
                 }
             },
             "dependsOn": [
@@ -539,8 +539,8 @@
                 "publicIPAllocationMethod": "Dynamic",
                 "idleTimeoutInMinutes": 4,
                 "dnsSettings": {
-                    "domainNameLabel": "[variables('IxNetworkClientDnsLabel')]",
-                    "fqdn": "[concat(variables('IxNetworkClientDnsLabel'),'.', resourceGroup().location,'.cloudapp.azure.com')]"
+                    "domainNameLabel": "[variables('IxLoadClientDnsLabel')]",
+                    "fqdn": "[concat(variables('IxLoadClientDnsLabel'),'.', resourceGroup().location,'.cloudapp.azure.com')]"
                 }
             },
             "dependsOn": []
@@ -572,7 +572,7 @@
 
         {
             "type": "Microsoft.Compute/virtualMachines",
-            "name": "[variables('IxNetworkClientName')]",
+            "name": "[variables('IxLoadClientName')]",
             "apiVersion": "[variables('apiVersion')]",
             "location": "[resourceGroup().location]",
 			"plan": {
@@ -589,12 +589,12 @@
 			},
             "properties": {
                 "hardwareProfile": {
-                    "vmSize": "[parameters('IxNetworkClientVmSize')]"
+                    "vmSize": "[parameters('IxLoadClientVmSize')]"
                 },
 				"osProfile": {
-					"computerName": "[variables('IxNetworkClientName')]",
-					"adminUsername": "[parameters('IxNetworkClientUsername')]",
-					"adminPassword": "[parameters('IxNetworkClientPassword')]"
+					"computerName": "[variables('IxLoadClientName')]",
+					"adminUsername": "[parameters('IxLoadClientUsername')]",
+					"adminPassword": "[parameters('IxLoadClientPassword')]"
 				},
                 "storageProfile": {
 					"imageReference": {
@@ -605,17 +605,17 @@
 					},
 					"osDisk": {
                         "osType": "Windows",
-                        "name": "[concat('disk_', variables('IxNetworkClientName'))]",
+                        "name": "[concat('disk_', variables('IxLoadClientName'))]",
                         "createOption": "[variables('CreateOption')]",
                         "caching": "ReadWrite",
-                        "diskSizeGB": "[variables('IxNetworkClientDiskSizeGB')]"
+                        "diskSizeGB": "[variables('IxLoadClientDiskSizeGB')]"
                     },
                     "dataDisks": []
                 },
                 "networkProfile": {
                     "networkInterfaces": [
                         {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('IxNetworkClientEth0Name'))]",
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('IxLoadClientEth0Name'))]",
                             "properties": {
                                 "primary": true
                             }
@@ -624,7 +624,7 @@
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/networkInterfaces', variables('IxNetworkClientEth0Name'))]"
+                "[resourceId('Microsoft.Network/networkInterfaces', variables('IxLoadClientEth0Name'))]"
             ]
         },
 

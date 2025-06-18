@@ -25,7 +25,7 @@ Located in `aws/Deployment/CloudFormation/IxLoad-TestApplianceOnly`, these JSON 
 - **Add-On Use Case**: Designed to integrate with existing infrastructure
 ---
 
-#### 🧪 Example #1: Deploying a Demo Use Case Template with a single Virtual Test Appliance
+#### 🧪 Example #1: Deploying a Demo Use Case Template with one Virtual Test Appliance
 
 **Resources Created:**
 - 1x Virtual Test Appliance

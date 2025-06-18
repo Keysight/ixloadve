@@ -2,7 +2,7 @@
 
 ### 🔧 Configurations
 
-This folder contains several IxNetwork VE .bpt configurations that can be used on their respective instance sizes. 
+This folder contains several IxLoad VE .rxf configurations that can be used on their respective instance sizes. 
 We have 4 different folders: 
 - C2-STANDARD-4
 - C2-STANDARD-8
@@ -32,7 +32,7 @@ Located in `google-cloud-platform/Deployment/DeploymentManager/IxLoad-FullDeploy
   - **Demo Use Case**: Full deployment including networking, security groups, etc.
 ---
 
-#### 🧪 Example #1: Deploying a Demo Use Case Template with one Virtual IxLoad VE (Client + Test Appliance) on a Single VM
+#### 🧪 Example #1: Deploying a Demo Use Case Template with one IxLoad VE Client and one Virtual Test Appliance
 
 **Resources Created:**
 - 1x IxLoad VE Client

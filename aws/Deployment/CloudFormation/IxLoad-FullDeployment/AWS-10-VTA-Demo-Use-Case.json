@@ -1,6 +1,6 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
-    "Description": "IxNetwork on AWS 10-TestAppliance CloudFormation",
+    "Description": "IxLoad on AWS 10-TestAppliance CloudFormation",
     "Mappings": {
         "RegionMap": {
             "us-east-1": {
@@ -8196,7 +8196,7 @@
         "IxClientSSHKey": {
             "Description": "Name of an existing EC2 KeyPair to enable SSH access",
             "Type": "AWS::EC2::KeyPair::KeyName",
-			"Default": "ixvm-frankfurt-key-pair"
+			"Default": "add-you-own-ssh-key"
         },
         "TestApplianceInstanceType": {
             "Description": "Instance type of Test Appliance VM",
