@@ -106,7 +106,7 @@
                 "INSTANCExBLOCKxDEVICExNAME": "/dev/xvda",
                 "INSTANCExEBSxDELETExONxTERMINATION": true,
                 "INSTANCExEBSxVOLUMExTYPE": "gp2",
-                "APPxTAG": "IXNETWORK",
+                "APPxTAG": "IXLOAD",
                 "APPxVERSION": "26.0.0",
                 "CLIENTxIMGxSIZE": "100",
                 "TESTAPPLIANCE1xETH0xPRIVATExIPxADDRESS": "10.0.10.11",
