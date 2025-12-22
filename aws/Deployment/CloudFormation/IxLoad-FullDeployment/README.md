@@ -2,7 +2,7 @@
 
 ### 🚀 Deployment
 
-Version **11.00** of IxLoad Virtual Edition is available on the AWS Marketplace split into two different products:
+Version **26.0.0** of IxLoad Virtual Edition is available on the AWS Marketplace split into two different products:
 
 - [Keysight IxLoad Virtual Edition Client](https://aws.amazon.com/marketplace/pp/prodview-fee3kemll2qvy)
 - [Keysight IxLoad Virtual Test Appliance](https://aws.amazon.com/marketplace/pp/prodview-ytjro3kw7ad26)

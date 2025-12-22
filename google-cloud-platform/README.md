@@ -10,7 +10,7 @@ We have 4 different folders:
 
 ### 🚀 Deployment
 
-Version **11.00** of IxLoad Virtual Edition is available on the GCP Marketplace here:
+Version **26.0.0** of IxLoad Virtual Edition is available on the GCP Marketplace here:
 
 - [Keysight IxLoad Virtual Edition Marketplace](https://console.cloud.google.com/marketplace/product/keysight-public/keysight-IxLoad-virtual-edition)
 

@@ -6,7 +6,7 @@ This folder contains one IxLoad Virtual Edition configuration for your use cases
 
 ### 🚀 Deployment
 
-Version **11.00** of IxLoad Virtual Edition is available on the Microsoft Azure Marketplace here:
+Version **26.0.0** of IxLoad Virtual Edition is available on the Microsoft Azure Marketplace here:
 
 - [Keysight IxLoad Virtual Edition Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/keysight-technologies-ixvm.keysight-ixload-virtual-edition?tab=Overview)
 
