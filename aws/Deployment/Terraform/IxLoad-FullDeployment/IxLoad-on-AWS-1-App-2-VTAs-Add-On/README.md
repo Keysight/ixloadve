@@ -21,7 +21,7 @@ You **MAY** uncomment one or more lines as needed in these files and replace val
 ```
 terraform init
 terraform apply -auto-approve
-terraform output SshKey | tail -n +3 | head -n-3 | sed "s/^[ \t]*//" > SshKey.pem
+terraform output SshKey | tail -n +3 | head -n-3 | sed "s/^[ \t]*//" > .sshKey.pem
 terraform destroy -auto-approve
 ```
 You **MUST** output the SSH key pair associated with the AWS instances.  
