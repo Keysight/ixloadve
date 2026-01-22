@@ -69,17 +69,17 @@
         "MgmtHttpsSecurityRuleName": "[concat(variables('OptionalVMPrefix'), '_', 'HTTPS_RULE')]",
         "MgmtRdpSecurityRuleName": "[concat(variables('OptionalVMPrefix'), '_', 'RDP_RULE')]",
         "ManagementSecurityRuleSourceIPPrefix": "[parameters('ManagementSecurityRuleSourceIPPrefix')]",
-        "IxLoadClientEth0Name": "[concat(variables('OptionalVMPrefix'), '_', 'IXNETWORK_CLIENT_ETH0')]",
-        "VirtualTestAppliance1Eth0Name": "[concat(variables('OptionalVMPrefix'), '_', 'IXNETWORK_VIRTUALTESTAPPLIANCE1_ETH0')]",
-        "VirtualTestAppliance1Eth1Name": "[concat(variables('OptionalVMPrefix'), '_', 'IXNETWORK_VIRTUALTESTAPPLIANCE1_ETH1')]",
+        "IxLoadClientEth0Name": "[concat(variables('OptionalVMPrefix'), '_', 'IXLOAD_CLIENT_ETH0')]",
+        "VirtualTestAppliance1Eth0Name": "[concat(variables('OptionalVMPrefix'), '_', 'IXLOAD_VIRTUALTESTAPPLIANCE1_ETH0')]",
+        "VirtualTestAppliance1Eth1Name": "[concat(variables('OptionalVMPrefix'), '_', 'IXLOAD_VIRTUALTESTAPPLIANCE1_ETH1')]",
 		"VirtualTestAppliance1Eth0IpAddress": "10.0.10.11",
 		"VirtualTestAppliance1Eth1IpAddresses": ["10.0.2.12", "10.0.2.13", "10.0.2.14", "10.0.2.15", "10.0.2.16", "10.0.2.17", "10.0.2.18", "10.0.2.19", "10.0.2.20", "10.0.2.21"],
-		"IxLoadClientName": "[concat(variables('OptionalVMPrefix'), '-', 'IXNETWORK-WI')]",
+		"IxLoadClientName": "[concat(variables('OptionalVMPrefix'), '-', 'IXLOAD-WI')]",
 		"IxLoadClientDnsLabel": "[concat(toLower(variables('OptionalVMPrefix')), '-', 'ixn-client', '-', substring(uniqueString(resourceGroup().id),0,6))]",
         "EnableAcceleratedNetworking": false,
         "IxLoadClientEnableIPForwarding": false,
 		"BootDiagnosticsEnabled": true,
-        "VirtualTestAppliance1Name": "[concat(variables('OptionalVMPrefix'), '-', 'IXNETWORK-VIRTUALTESTAPPLIANCE1')]",
+        "VirtualTestAppliance1Name": "[concat(variables('OptionalVMPrefix'), '-', 'IXLOAD-VIRTUALTESTAPPLIANCE1')]",
 		"VirtualTestAppliance1DnsLabel": "[concat(toLower(variables('OptionalVMPrefix')), '-', 'ixn-vta-1', '-', substring(uniqueString(resourceGroup().id),0,6))]",
         "VirtualTestApplianceEnableIPForwarding": true,
 		"VirtualTestApplianceDisablePasswordAuthentication": false,
@@ -87,7 +87,7 @@
 		"VirtualTestApplianceDiskSizeGB": "30",
 		"IxLoadClientDiskSizeGB": "127",
         "MgmtPublicIpAddressName": "[concat(variables('OptionalVMPrefix'), '_', 'MGMT_PUBLIC_IP')]",
-        "VirtualTestAppliance1Eth0PublicIpAddressName": "[concat(variables('OptionalVMPrefix'), '_', 'IXNETWORK_VIRTUALTESTAPPLIANCE1_ETH0_PUBLIC_IP')]",
+        "VirtualTestAppliance1Eth0PublicIpAddressName": "[concat(variables('OptionalVMPrefix'), '_', 'IXLOAD_VIRTUALTESTAPPLIANCE1_ETH0_PUBLIC_IP')]",
 		"CreateOption": "FromImage"
 	},
     "resources": [
@@ -576,7 +576,7 @@
             "apiVersion": "[variables('apiVersion')]",
             "location": "[resourceGroup().location]",
 			"plan": {
-				"name": "keysight-ixload-virtual-edition-client-11-00",
+				"name": "keysight-ixload-virtual-edition-client-26-0-0",
 				"product": "keysight-ixload-virtual-edition",
 				"publisher": "keysight-technologies-ixvm"
 			},
@@ -600,8 +600,8 @@
 					"imageReference": {
 						"publisher": "keysight-technologies-ixvm",
 						"offer": "keysight-ixload-virtual-edition",
-						"sku": "keysight-ixload-virtual-edition-client-11-00",
-						"version": "11.00.320"
+						"sku": "keysight-ixload-virtual-edition-client-26-0-0",
+						"version": "26.0.94"
 					},
 					"osDisk": {
                         "osType": "Windows",
@@ -634,7 +634,7 @@
             "apiVersion": "[variables('apiVersion')]",
             "location": "[resourceGroup().location]",
 			"plan": {
-				"name": "keysight-ixload-virtual-test-appliance-11-00",
+				"name": "keysight-ixload-virtual-test-appliance-26-0-0",
 				"product": "keysight-ixload-virtual-edition",
 				"publisher": "keysight-technologies-ixvm"
 			},
@@ -653,8 +653,8 @@
 					"imageReference": {
 						"publisher": "keysight-technologies-ixvm",
 						"offer": "keysight-ixload-virtual-edition",
-						"sku": "keysight-ixload-virtual-test-appliance-11-00",
-						"version": "11.00.634"
+						"sku": "keysight-ixload-virtual-test-appliance-26-0-0",
+						"version": "26.0.317"
 					},
                     "osDisk": {
                         "osType": "Linux",
