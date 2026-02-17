@@ -1,6 +1,14 @@
 data "google_client_config" "current" {}
 
-data "google_client_openid_userinfo" "current" {}
+data "google_compute_machine_types" "Agent" {
+	filter = "name = ${local.AgentMachineType}"
+	zone = data.google_client_config.current.zone
+}
+
+data "google_compute_machine_types" "App" {
+	filter = "name = ${local.AppMachineType}"
+	zone = data.google_client_config.current.zone
+}
 
 data "http" "ip" {
 	url = "https://ifconfig.me/ip"
