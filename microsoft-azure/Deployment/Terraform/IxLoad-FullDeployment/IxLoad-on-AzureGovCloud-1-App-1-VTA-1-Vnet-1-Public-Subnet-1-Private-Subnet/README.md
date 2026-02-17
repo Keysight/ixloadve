@@ -1,4 +1,4 @@
-# IxLoad-on-AzureGovCloud-1-App-1-Agent-1-Vnet-1-Public-Subnet-1-Private-Subnet
+# IxLoad-on-AzureGovCloud-1-App-1-VTA-1-Vnet-1-Public-Subnet-1-Private-Subnet
 
 ## Description
 This deployment creates a topology with a single virtual network having a single public facing subnet and a single private subnet.
