@@ -9,8 +9,9 @@ locals {
 	Agent2InstanceName = "${local.Preamble}-instance"
 	AppTag = "ixload"
 	Preamble = replace("${local.UserLoginTag}-${local.UserProjectTag}-${local.AppTag}-${local.Agent2InstanceId}", "_", "-")
+	PrivateVpcNetworkMtu = var.PrivateVpcNetworkMtu
 	PublicFirewallRuleSourceIpRanges = var.PublicFirewallRuleSourceIpRanges == null ? [ "${data.http.ip.response_body}/32" ] : var.PublicFirewallRuleSourceIpRanges
-	UserEmailTag = var.UserEmailTag == null ? data.google_client_openid_userinfo.current.email : var.UserEmailTag
+	UserEmailTag = var.UserEmailTag == null ? "terraform@example.com" : var.UserEmailTag
 	UserLoginTag = var.UserLoginTag == null ? "terraform" : var.UserLoginTag
 	UserProjectTag = var.UserProjectTag == null ? lower(random_id.RandomId.id) : var.UserProjectTag
 }
